@@ -3,6 +3,8 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import { get } from "mongoose";
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export function saveUser(req, res) {
 
@@ -66,7 +68,7 @@ export function loginUser(req, res) {
                     isDisabled : user.isDisabled,
                     isEmailVerified : user.isEmailVerified
                 }
-                const token =jwt.sign(userData,"dilshan123")
+                const token =jwt.sign(userData,process.env.JWT_SECRET)
                 res.json({
                     message : "User authenticated successfully",
                     token : token
