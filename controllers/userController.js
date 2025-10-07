@@ -53,7 +53,7 @@ export function loginUser(req, res) {
         email : reqEmail
     }).then((user)=>{
         if(user==null){
-            res.json({
+            res.status(401).json({
                 message : "Authentication failed"
             })
         }else{
@@ -69,12 +69,13 @@ export function loginUser(req, res) {
                     isEmailVerified : user.isEmailVerified
                 }
                 const token =jwt.sign(userData,process.env.JWT_SECRET)
-                res.json({
+                res.status(200).json({
                     message : "User authenticated successfully",
-                    token : token
+                    token : token,
+                    user : userData
                 })
             }else{
-                res.json({
+                res.status(401).json({
                     message : "Authentication failed"
                 })
             }
