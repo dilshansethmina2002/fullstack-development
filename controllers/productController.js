@@ -12,7 +12,7 @@ export function createProduct(req, res) {
         return
     }
 
-const product = new Product(req.body);
+    const product = new Product(req.body)
     product.save().then(()=>{
         res.json(
             {message : "Product saved successfully"});
