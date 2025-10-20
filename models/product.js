@@ -42,5 +42,5 @@
     })
 
     const Product = new mongoose.model("Product", productSchenma);
-
+        
     export default Product; 

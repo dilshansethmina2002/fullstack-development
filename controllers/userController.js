@@ -54,7 +54,7 @@ export function loginUser(req, res) {
     }).then((user)=>{
         if(user==null){
             res.status(401).json({
-                message : "Authentication failed"
+                message : "No user Found"
             })
         }else{
             const isPasswordIsValid =bcrypt.compareSync(reqPassword, user.password)

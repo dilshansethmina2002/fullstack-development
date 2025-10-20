@@ -31,6 +31,21 @@ export function getProducts(req, res) {
 
 }
 
+export async function getProductById(req, res) {
+    const productId = req.params.Id 
+    const product = await Product.findOne({productId:productId})
+    if(product==null){
+        res.status(404).json({  
+            message : "Product not found"
+        })
+        return
+    }
+    res.json({
+        product : product
+    })
+
+}
+
 export function deleteProduct(req, res){
         if(req.user.role != "admin"){
             res.status(403).json({message : "You are not authorized to delete a product"});
